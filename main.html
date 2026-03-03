@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Interactiva 3D</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: sans-serif;
+            background-color: #ded8c9;
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 33.5vh;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+        }
+
+        .modal {
+            position: relative;
+            width: 460px;
+            height: 255px;
+            background: #000;
+            border: none;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            animation: tvOn 0.8s ease-out forwards;
+        }
+
+        @keyframes tvOn {
+            0% {
+                transform: scale(0.001, 0.005);
+                background: #fff;
+                filter: brightness(5);
+            }
+
+            40% {
+                transform: scale(1, 0.005);
+                background: #fff;
+            }
+
+            70% {
+                transform: scale(1, 1);
+                background: #fff;
+            }
+
+            100% {
+                transform: scale(1, 1);
+                background: #000;
+                filter: brightness(1);
+            }
+        }
+
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slides {
+            display: flex;
+            height: 100%;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide img,
+        .slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            right: 0;
+        }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://esm.sh/three@0.160.0",
+        "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
+</head>
+
+<body>
+    <div class="overlay" id="overlay">
+        <div class="modal">
+            <div class="carousel">
+                <div class="slides" id="slidesContainer">
+                    <div class="slide"><video src="VIDS/PC.mp4" muted loop></video></div>
+                    <div class="slide"><img src="VIDS/SNOW.webp"></div>
+                    <div class="slide"><video src="VIDS/AIGUA.mp4" muted loop></video></div>
+                </div>
+                <button class="arrow left" id="prev">&#10094;</button>
+                <button class="arrow right" id="next">&#10095;</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
